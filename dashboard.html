@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Viewer — Dashboard Portal</title>
+  <link rel="icon" href="assets/images/logo-placeholder.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="viewer-body">
+
+  <!-- =========================================================================
+       SECURITY NOTE (see also js/dashboard-viewer.js and README.md):
+       This page does not perform, store, or bypass any Power BI login. The
+       iframe below simply points at the URL configured for this dashboard in
+       js/dashboards.js. Power BI handles all authentication, licensing, and
+       (if configured in the semantic model) Row-Level Security itself.
+  ========================================================================= -->
+
+  <header class="viewer-header">
+    <button class="btn" id="backBtn">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      Back to Dashboards
+    </button>
+
+    <div class="viewer-header__title">
+      <h1 id="viewerTitle">Loading…</h1>
+      <span id="viewerCategory"></span>
+    </div>
+
+    <button class="btn" id="fullscreenBtn">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M16 3h3a2 2 0 0 1 2 2v3"/><path d="M8 21H5a2 2 0 0 1-2-2v-3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
+      Fullscreen
+    </button>
+
+    <button class="btn btn--primary" id="openNewTabBtn">
+      Open in New Tab
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
+    </button>
+  </header>
+
+  <main class="viewer-main" id="viewerMain">
+
+    <!-- iframe embed -->
+    <div class="frame-wrap" id="frameWrap" hidden>
+      <iframe id="dashboardFrame" title="Power BI dashboard" allowfullscreen loading="eager"></iframe>
+    </div>
+
+    <!-- Loading indicator -->
+    <div class="viewer-loading" id="viewerLoading">
+      <div class="spinner"></div>
+      <p>Loading dashboard…</p>
+    </div>
+
+    <!-- Embedding-blocked fallback -->
+    <div class="viewer-state" id="viewerFallback" hidden>
+      <div class="state-panel">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l9.5 16.5H2.5L12 3.5Z"/><path d="M12 10v4"/><path d="M12 17.2v.1"/></svg>
+        <h3>This dashboard can't be displayed here</h3>
+        <p data-fallback-message>Power BI (or your browser) blocked this report from being embedded in the portal. This is a normal Power BI security behavior, not an error with the portal — open the report in a new tab instead.</p>
+        <a class="btn btn--primary" id="fallbackOpenLink" href="#" target="_blank" rel="noopener noreferrer">
+          Open in New Tab
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Dashboard id missing / not found in dashboards.js -->
+    <div class="viewer-state" id="viewerNotFound" hidden>
+      <div class="state-panel state-panel--error">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l9.5 16.5H2.5L12 3.5Z"/><path d="M12 10v4"/><path d="M12 17.2v.1"/></svg>
+        <h3>Dashboard not found</h3>
+        <p>This dashboard link is invalid, or the dashboard has been removed from js/dashboards.js.</p>
+        <a class="btn btn--primary" href="index.html">Back to Dashboards</a>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="js/dashboards.js"></script>
+  <script src="js/dashboard-viewer.js"></script>
+</body>
+</html>
