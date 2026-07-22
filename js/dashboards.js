@@ -154,7 +154,7 @@ var dashboards = [
     // Standard Power BI "embed" link (opened while signed in) — autoAuth=true and
     // ctid= mean this still requires organizational sign-in and honors RLS if
     // configured in the semantic model. This is NOT a "Publish to web" link.
-    url: "https://app.powerbi.com/reportEmbed?reportId=41075716-fefc-4f19-b74c-b134b9c20fdd&autoAuth=true&ctid=0fbf1c82-c79e-41db-9ad3-8d147097371c",
+    url: "https://app.powerbi.com/view?r=eyJrIjoiNDFmNzI2MjQtZTA4MS00OWJjLWE5ZDQtZmYzZDhhNDdkYzk0IiwidCI6IjBmYmYxYzgyLWM3OWUtNDFkYi05YWQzLThkMTQ3MDk3MzcxYyIsImMiOjJ9",
     icon: "trending",
   },
 ];
